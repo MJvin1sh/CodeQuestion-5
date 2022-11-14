@@ -1,1 +1,94 @@
 # CodeQuestion-5
+import java.util.Random;
+class AccountHolder {
+     int ID;
+     String address;
+     Random rnd;
+     AccountHolder(int ID, String address){
+          this.ID = ID;
+          this.address = address;
+          rnd = new Random();
+     }
+     int getNextID(){
+        return rnd.nextInt(1000000);
+     }
+    
+}
+
+class IndividualHolder extends AccountHolder{
+     String name;
+     String SSN;
+      IndividualHolder(int ID, String address, String name, String SSN){
+          super(ID, address);
+          this.name = name;
+          this.SSN = SSN;
+     }
+     
+     String getName(){
+          return name;
+     }
+     String getSSN(){
+          return SSN;
+     }
+     void setName(String name){
+          this.name = name;
+     }
+     void setSSN(String SSN){
+          this.SSN = SSN;
+     }
+}
+
+class CorporateHolder extends AccountHolder{
+     String contact;
+     CorporateHolder(int ID, String address, String contact){
+          super(ID, address);
+          this.contact = contact;
+     }
+     String getContact(){
+          return contact;
+     }
+     void setContact(String contact){
+          this.contact = contact;
+     }
+}
+
+public class Account {
+     AccountHolder holder;
+     double balance = 0.0; 
+     Account(double amt, AccountHolder holder){
+      this.balance = amt;
+       this.holder = holder;    
+     }
+    double deposit(double amount){
+      return balance = amount + this.balance;
+      
+    }
+    double withdraw(double amount){
+     return  balance = balance - amount;
+    }
+    double getBalance(){
+      return balance;
+    }
+    void setBalance(double amount){
+      balance = amount;
+    }
+    void setHolder(int id, String address){
+      holder = new AccountHolder(id, address);  
+    }
+    public static void main(String[] args) {
+       IndividualHolder holder1 = new IndividualHolder(1, "123 Poaa" , "J", "6577442566");
+       CorporateHolder holder2 = new CorporateHolder(1, "26 Valente", "6577442566");
+     Account acc1 = new Account(1000, holder1);
+     Account acc2 = new Account(2000, holder2);
+     acc1.deposit(500);
+     acc1.setBalance(5000);
+     acc1.withdraw(1500);
+     
+     System.out.println(acc1.getBalance());
+     System.out.println(holder1.getNextID());
+     System.out.println(holder1.getNextID());
+     System.out.println(holder1.getNextID());
+     System.out.println(holder2.getContact());
+     
+}
+}
